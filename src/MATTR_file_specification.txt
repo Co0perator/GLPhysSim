@@ -1,0 +1,14 @@
+GLPhysSim MATTR File Specification v0.0
+
+Attributes will be layed out as such:
+
+[Attribute Name]:[value or expression]
+
+Attributes may be functions of other attributes. The other attributes must be refernced by a "$" charchter. E.G.:
+
+Density:($Temperature*$Pressure)0.637
+
+You can also read in attributes from a data file, and the attribute's value will be found on a line between the nearest
+greater X data point and nearest lesser X data point:
+
+Density:@read(density_measurments.glpsdat)
