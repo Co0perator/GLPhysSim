@@ -30,7 +30,7 @@ void GLPS_Clear_GL_Errors()
 	*/
 }
 
-void GLPS_GL_Callback(GLenum source, GLenum type, GLuint id, GLenum)
+void GLPS_GL_Callback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *userParam)
 {
 	return;
 }
