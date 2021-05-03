@@ -1,4 +1,4 @@
-GLPhysSim MATTR File Specification v0.0
+GLPhysSim Material Properties and Interactions Description Language Specification v0.0
 
 Attributes will be layed out as such:
 

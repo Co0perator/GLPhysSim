@@ -1,12 +1,13 @@
-#include "../include/GL/glew.h"
-#include "../include/GLFW/glfw.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include "glps.h"
 #include <stdio.h>
 #include <GL/gl.h>
 #include <string.h>
 
 #ifndef DebugCall(f)
-#define DebugCall(f) 
+#define DebugCall(f)
+#endif
 
 void GLPS_Clear_GL_Errors()
 {
@@ -27,15 +28,14 @@ void GLPS_Clear_GL_Errors()
 		}
 	}
 	*/
-	
 }
 
 void GLPS_GL_Callback(GLenum source, GLenum type, GLuint id, GLenum)
 {
-
+	return;
 }
 
-GLuint GLPS_Make_Shader(const char* source, GLenum type) 
+GLuint GLPS_Make_Shader(const char *source, GLenum type)
 {
 	return glCreateShaderProgram(type, 1, &source);
 }
