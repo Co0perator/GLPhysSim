@@ -1,0 +1,33 @@
+;single line comment
+
+;;;
+multiline comment
+;;;
+
+material water: ;defining the material name
+
+anno: ;annotation
+
+	pref_shape: sphere ;sphere is the preferred rigid-body shape
+
+	color: blue ;the preferred rendering color of this material is blue
+
+	mat_type: multi_state ;can have different states, as compared to solid, liquid, or gas only
+
+	;^^^^ These are just example annotations
+
+attrib:		;attributes
+	f temp	;f is the floating point type. other types are i (integer), u (unsigned integer), l (long integer), and o (object)
+	o neighbors[6]	;this is an array of objects from the simulation (specifically the 6 nearest water particles). Objects are referenced from an array stored by them sim. They are a rigid body.
+	f pressure = 1	;you can give changeable default values
+	f density
+
+const attrib:
+	i freezing_point = 0
+	i boiling_point = 100
+
+interact main:
+	if temp >= boiling_point:
+		density *= 0.2
+	
+	

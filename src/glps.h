@@ -1,3 +1,7 @@
+#ifndef GLFW_INCLUDE_NONE
+#define GLFW_INCLUDE_NONE
+#endif
+
 #ifndef GLPS_H
 #define GLPS_H
 

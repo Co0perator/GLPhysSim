@@ -1,13 +1,14 @@
+#ifndef GLFW_INCLUDE_NONE
+#define GLFW_INCLUDE_NONE
+#endif
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "glps.h"
 #include <stdio.h>
 #include <GL/gl.h>
 #include <string.h>
-
-#ifndef DebugCall(f)
-#define DebugCall(f)
-#endif
+#include "GLPS_gl_handler.h"
 
 void GLPS_Clear_GL_Errors()
 {
@@ -32,10 +33,78 @@ void GLPS_Clear_GL_Errors()
 
 void GLPS_GL_Callback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *userParam)
 {
-	return;
+	switch (severity)
+	{
+	case GL_DEBUG_SEVERITY_HIGH:
+		printf("GL ERROR:");
+		break;
+	case GL_DEBUG_SEVERITY_MEDIUM:
+		printf("GL WARNING:");
+		break;
+	case GL_DEBUG_SEVERITY_LOW:
+		printf("GL Warning:");
+		break;
+	case GL_DEBUG_SEVERITY_NOTIFICATION:
+		printf("GL Notification:");
+		break;
+	}
+	printf("\n\tSource: ");
+	switch (source)
+	{
+	case GL_DEBUG_SOURCE_API:
+		printf("API");
+		break;
+	case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
+		printf("Window System");
+		break;
+	case GL_DEBUG_SOURCE_SHADER_COMPILER:
+		printf("Shader Compiler");
+		break;
+	case GL_DEBUG_SOURCE_THIRD_PARTY:
+		printf("Third Party");
+		break;
+	case GL_DEBUG_SOURCE_APPLICATION:
+		printf("Application");
+		break;
+	case GL_DEBUG_SOURCE_OTHER:
+		printf("Other");
+		break;
+	}
+	printf("\n\tType: ");
+	switch (type)
+	{
+	case GL_DEBUG_TYPE_ERROR:
+		printf("Error");
+		break;
+	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+		printf("Deprecated Behavior");
+		break;
+	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+		printf("Undefined Behavior");
+		break;
+	case GL_DEBUG_TYPE_PORTABILITY:
+		printf("Portability");
+		break;
+	case GL_DEBUG_TYPE_PERFORMANCE:
+		printf("Performance");
+		break;
+	case GL_DEBUG_TYPE_MARKER:
+		printf("Marker");
+		break;
+	case GL_DEBUG_TYPE_PUSH_GROUP:
+		printf("Push Group");
+		break;
+	case GL_DEBUG_TYPE_POP_GROUP:
+		printf("Pop Group");
+		break;
+	case GL_DEBUG_TYPE_OTHER:
+		printf("Other");
+		break;
+	}
+	printf("\n\tID: %u\n\tMessage: %s\n", id, message);
 }
 
 GLuint GLPS_Make_Shader(const char *source, GLenum type)
 {
-	return glCreateShaderProgram(type, 1, &source);
+	return glCreateShaderProgramv(type, 1, &source);
 }
