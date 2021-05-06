@@ -79,6 +79,11 @@ int main(int argc, char *argv[])
 	}*/
 	while (!glfwWindowShouldClose(window))
 	{
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glfwSwapBuffers(window);
+
+		glfwPollEvents();
 	}
 	glfwDestroyWindow(window);
 	glfwTerminate();
