@@ -31,7 +31,7 @@ anno: ;annotation
 
 	color: v3() ;the rendering color of this material
 
-	mat_type: multi_state ;can have different states, as compared to solid, liquid, or gas only
+	mat_type: rigid ;Currently MAIDL(v0.0) only supports rigid-body interactions, but later versions may support other types of materials
 
 	;^^^^ These are just example annotations
 
@@ -42,17 +42,22 @@ attrib:		;attributes
 	f density
 	b freezing
 	b boiling
+    v3 linear_velocity
+    v2 rotational_velocity
 
-const attrib:
+cattrib:
 	i freezing_point = 0
 	i boiling_point = 100
 
+gattrib:
+    l num_particles
+
 func on_collision(o object):
-	bounce(object)
+	bounce(o object)
 
-func main(f delta, )
+func main(f timestep):
 
 
-interact water:
+inter water:
 	
 

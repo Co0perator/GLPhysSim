@@ -19,4 +19,6 @@
 
 #include <sstream>
 #include <string>
+#include <vector>
 #include "MAIDL.h"
+#include "MAIDL_Interp.hpp"

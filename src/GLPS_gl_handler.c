@@ -1,12 +1,7 @@
-#ifndef GLFW_INCLUDE_NONE
-#define GLFW_INCLUDE_NONE
-#endif
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "glps.h"
 #include <stdio.h>
-#include <GL/gl.h>
 #include <string.h>
 #include "GLPS_gl_handler.h"
 
@@ -107,4 +102,8 @@ void GLPS_GL_Callback(GLenum source, GLenum type, GLuint id, GLenum severity, GL
 GLuint GLPS_Make_Shader(const char *source, GLenum type)
 {
 	return glCreateShaderProgramv(type, 1, &source);
+}
+
+GLFWwindow *GLPS_Init()
+{
 }

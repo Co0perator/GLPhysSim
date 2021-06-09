@@ -1,11 +1,7 @@
-#ifndef GLFW_INCLUDE_NONE
-#define GLFW_INCLUDE_NONE
-#endif
-
 #ifndef GLPS_H
 #define GLPS_H
 
-#include <GL/gl.h>
+#include <GLFW/glfw3.h>
 #include <inttypes.h>
 
 #ifndef GLPS_MATTER_FILE

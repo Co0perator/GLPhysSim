@@ -42,13 +42,14 @@ typedef struct
 typedef struct
 {
 
-} Annotion;
+} Annotation;
 
 typedef struct
 {
     uint64_t hash;
+    size_t func_count;
     HashPointer **func_hash_map;
-
+    size_t attrib_count;
 } Material;
 
 #endif
