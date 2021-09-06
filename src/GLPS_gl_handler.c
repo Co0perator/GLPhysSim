@@ -7,15 +7,15 @@
 
 void GLPS_Clear_GL_Errors()
 {
-	/*
+
 	GLuint status;
-	while(1)
-	{	
+	while (1)
+	{
 		GLchar *msg_buf = (GLchar *)alloca(1000);
 		status = glGetDebugMessageLog(1, 1000, NULL, NULL, NULL, NULL, NULL, msg_buf);
-		if (status != 0) 
+		if (status != 0)
 		{
-			printf("%s\n",(const char*)msg_buf);
+			printf("%s\n", (const char *)msg_buf);
 			free(msg_buf);
 		}
 		else
@@ -23,7 +23,6 @@ void GLPS_Clear_GL_Errors()
 			return;
 		}
 	}
-	*/
 }
 
 void GLPS_GL_Callback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *userParam)
@@ -106,4 +105,39 @@ GLuint GLPS_Make_Shader(const char *source, GLenum type)
 
 GLFWwindow *GLPS_Init()
 {
+
+	GLenum glfw_init = glfwInit();
+
+	if (glfw_init != GLFW_TRUE)
+	{
+		printf("GLFW failed to init\n");
+		exit(0);
+	}
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
+	GLFWwindow *window = glfwCreateWindow(640, 480, "GLPhysSim", NULL, NULL);
+	if (!window)
+	{
+		printf("Unable to create window!\n");
+		glfwTerminate();
+		exit(0);
+	}
+
+	glfwMakeContextCurrent(window);
+	printf("GL Version: %s\n", glGetString(GL_VERSION));
+
+	GLenum err = glewInit();
+	if (err != GLEW_OK)
+	{
+		printf("GLEW failed to init\n");
+		printf("Error: %s\n", glewGetErrorString(err));
+		glfwTerminate();
+		exit(0);
+	}
+
+	glDebugMessageCallback(GLPS_GL_Callback, NULL);
+
+	return window;
 }
