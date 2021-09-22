@@ -1,5 +1,5 @@
 /*
-    this is a C implementation of the MAIDL specification
+    This is a physics simulator that uses OpenGL for hardware acceleration
     Copyright (C) 2021  Miles Potter
 
     This program is free software; you can redistribute it and/or modify
@@ -17,41 +17,24 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#ifndef MAIDL
-#define MAIDL
-#include <inttypes.h>
-
-/*
-#ifndef MAIDL_SHAPE
-#define MAIDL_SHAPE 0x0001
+#ifndef GLEW_INCL
+#include <GL/glew.h>
+#define GLEW_INCL
 #endif
 
-#ifndef MAIDL_COLOR
-#define MAIDL_COLOR 0x0002
-#endif
-
-#ifndef MAIDL_MAT_STATE
-#define MAIDL_MAT_STATE 0x0003
-#endif
-*/
+#ifndef INPUT_H
+#define INPUT_H
+#include "GLFW/glfw3.h"
 
 typedef struct
 {
-    uint64_t hash;
-    void *pointer;
-} HashPointer;
+    GLFWwindow *window;
+    __u_char a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, shift, ctrl;
+    double xpos, ypos;
+    int mouse_left, mouse_right;
+} GLPS_Input;
 
-typedef struct
-{
-
-} Annotation;
-
-typedef struct
-{
-    uint64_t hash;
-    size_t func_count;
-    HashPointer **func_hash_map;
-    size_t attrib_count;
-} Material;
+GLPS_Input *GLPS_Input_Init(GLFWwindow *window);
+void GLPS_Collect_Input(GLPS_Input *input);
 
 #endif
