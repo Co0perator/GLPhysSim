@@ -20,10 +20,7 @@
 #ifndef GLPS_H
 #define GLPS_H
 
-#ifndef GLEW_INCL
 #include <GL/glew.h>
-#define GLEW_INCL
-#endif
 
 #include <GLFW/glfw3.h>
 #include <inttypes.h>

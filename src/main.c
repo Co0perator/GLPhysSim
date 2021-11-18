@@ -17,13 +17,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-/*#ifndef GLFW_INCLUDE_NONE
-#define GLFW_INCLUDE_NONE
-#endif*/
-#ifndef GLEW_INCL
 #include <GL/glew.h>
-#define GLEW_INCL
-#endif
 
 #include <stdio.h>
 #include <string.h>
@@ -47,6 +41,7 @@ int main(int argc, char *argv[])
         time(&stop);
         printf("%f\n", difftime(stop, start));
         printf("%c\n", controller->input->a);
+        printf("%c\n", controller->input->b);
     }
 
     glfwDestroyWindow(controller->window);
