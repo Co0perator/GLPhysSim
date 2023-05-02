@@ -17,23 +17,3 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#ifndef GLEW_INCL
-#include <GL/glew.h>
-#define GLEW_INCL
-#endif
-
-#include <GLFW/glfw3.h>
-#include "glps.h"
-
-#ifndef GLPS_GL_HANDLER
-#define GLPS_GL_HANDLER
-
-void GLPS_Clear_GL_Errors();
-void GLPS_GL_Callback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *userParam);
-// void GLPS_GLFW_Callback();  // Unimplemented, hypothetical callback function upon inputs to the window
-GLuint GLPS_Make_Shader(const char *source, GLenum type);
-GLFWwindow *GLPS_GL_Init();
-
-void Render_Frame(GLPS_Controller controller);
-
-#endif

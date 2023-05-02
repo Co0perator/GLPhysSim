@@ -1,6 +1,6 @@
 /*
     This is a physics simulator that uses OpenGL for hardware acceleration
-    Copyright (C) 2021  Miles Potter
+    Copyright (C) 2023  Miles Potter
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,17 +24,20 @@
 
 #ifndef INPUT_H
 #define INPUT_H
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
-typedef struct
+class GLPS_Input_Handler
 {
+public:
     GLFWwindow *window;
-    __u_char a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, shift, ctrl;
+    char a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, shift, ctrl;
     double xpos, ypos;
     int mouse_left, mouse_right;
-} GLPS_Input;
 
-GLPS_Input *GLPS_Input_Init(GLFWwindow *window);
-void GLPS_Collect_Input(GLPS_Input *input);
+    GLPS_Input_Handler(GLFWwindow *window);
+    void GLPS_Collect_Input();
+};
+
+// GLPS_Input *GLPS_Input_Init(GLFWwindow *window);
 
 #endif

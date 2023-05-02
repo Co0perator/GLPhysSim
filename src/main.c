@@ -1,6 +1,6 @@
 /*
     This is a physics simulator that uses OpenGL for hardware acceleration
-    Copyright (C) 2021  Miles Potter
+    Copyright (C) 2023  Miles Potter
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,7 +17,10 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
+#ifndef GLEW_INCL
 #include <GL/glew.h>
+#define GLEW_INCL
+#endif
 
 #include <stdio.h>
 #include <string.h>
@@ -30,21 +33,21 @@
 
 int main(int argc, char *argv[])
 {
-    GLPS_Controller *controller = GLPS_Init();
+    GLPS_Controller controller = GLPS_Controller();
     time_t start, stop;
-    while (!glfwWindowShouldClose(controller->window))
+    while (!glfwWindowShouldClose(controller.getWindow()))
     {
-        glClear(GL_COLOR_BUFFER_BIT);
-        glfwSwapBuffers(controller->window);
         time(&start);
-        GLPS_Collect_Input(controller->input);
+        Render_Frame(controller);
+        GLPS_Collect_Input(controller.getInputHandler());
+
         time(&stop);
         printf("%f\n", difftime(stop, start));
-        printf("%c\n", controller->input->a);
-        printf("%c\n", controller->input->b);
+        printf("%c\n", controller.getInputHandler().a);
+        printf("%c\n", controller.getInputHandler().b);
     }
 
-    glfwDestroyWindow(controller->window);
+    glfwDestroyWindow(controller.getWindow());
     glfwTerminate();
     return 0;
 }

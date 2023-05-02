@@ -1,6 +1,6 @@
 /*
     This is a physics simulator that uses OpenGL for hardware acceleration
-    Copyright (C) 2021  Miles Potter
+    Copyright (C) 2023  Miles Potter
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,10 +17,13 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
+#ifndef GLEW_INCL
+#include <GL/glew.h>
+#define GLEW_INCL
+#endif
+
 #ifndef GLPS_H
 #define GLPS_H
-
-#include <GL/glew.h>
 
 #include <GLFW/glfw3.h>
 #include <inttypes.h>
@@ -44,56 +47,62 @@
 #endif
 */
 
-typedef struct
+class GLPS_Controller
 {
+protected:
     GLFWwindow *window;
-    GLPS_Input *input;
-} GLPS_Controller;
+    GLPS_Input_Handler &input_handler;
 
-typedef struct
+public:
+    GLPS_Controller();
+    GLFWwindow *getWindow();
+    GLPS_Input_Handler getInputHandler();
+};
+
+class Shader
 {
     GLuint shader;
-} GLPS_Shader;
+};
 
-typedef struct
+class GL_Calculation
 {
-    GLPS_Shader **shaders;
+    Shader **shaders;
     GLuint program;
-} GLPS_Calculation;
+};
 
-typedef struct
+class GLPS_Attribute
 {
     char *name;
     double value;
-} GLPS_Attribute;
+};
 
-typedef struct
+class GLPS_Material
 {
-    GLPS_Attribute **attributes;
-} GLPS_Material;
+    GLPS_Attribute attributes[];
+};
 
-typedef struct
+class Vec3
 {
     double x, y, z;
-} GLPS_Vec3;
+};
 
-typedef struct
+class GVertex_Connection
 {
-    GLPS_Vec3 *v1, v2, v3;
-} GLPS_Vertex_Connection;
+    Vec3 v1, v2, v3;
+};
 
-typedef struct
+class Triangle
 {
-    GLPS_Vec3 p1, p2, p3;
-    GLPS_Vertex_Connection c1_2, c2_3, c3_1;
-} GLPS_Triangle;
+    Vec3 p1, p2, p3;
+    Vertex_Connection c1_2, c2_3, c3_1;
+};
 
-typedef struct
+class Structure
 {
-    GLPS_Triangle **tri_array;
+    Triangle tri_array[];
     size_t tri_count;
-} GLPS_Structure;
+};
 
-GLPS_Controller *GLPS_Init();
+// GLPS_Controller *GLPS_Init();
 
 #endif
